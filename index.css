@@ -1,0 +1,169 @@
+.body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header{
+    display: flex;
+    background-color: rgb(251, 254, 255);
+    justify-content: space-between;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
+}
+.logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  padding: 8px;
+  transition: transform 0.3s;
+}
+.logo:hover {
+  transform: rotate(360deg);
+}
+.nav-items ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-items li {
+    margin-right: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .nav-items li:last-child {
+    margin-right: 0;
+  }
+  
+  .nav-items li:hover {
+    color: #3498db; /* Change to your desired hover color */
+  }
+  
+  /* Adding a separator between list items */
+  .nav-items li:not(:last-child)::after {
+    content: "•";
+    margin-left: 10px;
+    color: #ccc;
+  }
+  .res-card {
+    width: 200px;
+    height: 350px;
+    margin: 10px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  
+}
+.res-info{
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.res-card:hover {
+    background-color: #b4bac4;
+    z-index: 50000;
+    
+}
+
+.res-logo{
+    width:190px;
+    height: 190px;
+    border-radius: 40px;
+    
+}
+.res-container{
+    display: flex;
+    flex-wrap:wrap;
+}
+.res-card:hover {
+    background-color: #b4bac4;
+    z-index: 1000;
+}
+
+.res-card h3 {
+    font-size: 0.9rem;
+}
+
+.res-card p {
+    font-size: 0.7rem;
+}
+
+.res-card h4 {
+    font-size: 0.9rem;
+}
+.shimmer-container{
+    display: flex;
+    flex-wrap:wrap;
+}
+.shimmer-card {
+    width:200px;
+    height:350px;
+    margin:5px;
+    background-color:rgba(244, 246, 248, 0.874) ;
+    border-radius:40;
+    padding:10px;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Setting position to enable z-index */
+    transition: background-color 0.3s ease; 
+}
+.login-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #3498db;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  /* Fancy hover effect */
+  .login-button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+    transform: rotate(360deg);
+  }
+  
+  /* Gradient background */
+  .login-button-gradient {
+    background-image: linear-gradient(to right, #ff6b6b, #434343);
+  }
+  
+  /* Rounded edges */
+  .login-button-rounded {
+    border-radius: 20px;
+  }
+  
+  /* Shadow */
+  .login-button-shadow {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    
+  }
+  .filter{
+    display: flex;
+    margin: 10px 10px 10px 10px;
+  }
+.res-link{
+  color: black;
+  text-decoration: none;
+}
