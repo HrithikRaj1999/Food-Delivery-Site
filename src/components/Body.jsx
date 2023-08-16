@@ -18,37 +18,55 @@ const Body = () => {
     const onlineStatus = useOnlineStatus();
     console.log({ bodyRendered: values });
     return onlineStatus ? (
-        <div className="body">
-            <div className="filter">
-                <input type="text" value={searchText} onChange={handleSearchText}></input>
-                <button className="btn-search" onClick={handleSearchButton}>
-                    Search
-                </button>
-                <div className="btn-filter">
-                    <button className="btn-filter-onRating" onClick={getTopRatedRes}>
+        <div className="mt-[9rem]">
+            <div className="utility flex items-center">
+                <div className="search m-1 p-2 flex items-center">
+                    <input
+                        className="p-2 w-60 border border-solid rounded-full border-black bg-slate-50"
+                        type="text"
+                        value={searchText}
+                        onChange={handleSearchText}
+                    ></input>
+                    <button
+                        className="btn-search   p-2 mx-1 bg-gray-300  rounded-full"
+                        onClick={handleSearchButton}
+                    >
+                        Search
+                    </button>
+                </div>
+                <div className="btn-filter p-2">
+                    <button
+                        className="btn-filter-onRating  p-2 mx-1  bg-gray-300 rounded-full "
+                        onClick={getTopRatedRes}
+                    >
                         Show Top Restaurant
                     </button>
                     {filtered ? (
-                        <button className="btn-clear-filter" onClick={handleClearFilter}>
+                        <button
+                            className="btn-clear-filter  p-2 mx-1  bg-gray-300 rounded-full"
+                            onClick={handleClearFilter}
+                        >
                             Clear
                         </button>
                     ) : null}
                 </div>
-                <div className="btn-sort">
+                <div className="btn-sort relative inline-block text-left  ">
                     <select
-                        name="cars"
-                        id="cars"
+                        className="inline-flex w-full justify-center gap-x-1.5 rounded-full bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                         onChange={handleRatingChange}
+                        value="default"
                         placeholder="Select Rating"
                     >
-                        <option value="best">Best</option>
-                        <option value="avg">Average</option>
+                        <option value="default" disabled>
+                            Select Rating
+                        </option>
+                        <option value="best" className="text-gray-400 ">Best</option>
+                        <option value="avg" className="text-gray-400 " >Average</option>
                     </select>
                 </div>
             </div>
-
             {values?.length !== 0 ? (
-                <div className="res-container">
+                <div className="res-container px-5 flex flex-wrap">
                     <GetEachResData />
                 </div>
             ) : (
