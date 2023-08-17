@@ -1,14 +1,15 @@
 import { useState } from "react";
 import ItemList from "./ItemList";
 
-const RestaurantCategory = ({ data }) => {
-    const [showItem, setShowItem] = useState(false);
+const RestaurantCategory = ({ index, data, setShowIndex, showItem }) => {
     const foodList = data?.itemCards;
-    console.log(foodList);
+    const handleChange = () => {
+       setShowIndex(showItem?-1:index);
+    };
     return (
         <div>
             <div className="w-6/12 m-auto my-7 bg-slate-50 p-4 hover:z-50 shadow-md hover:shadow-2xl font-medium">
-                <div className="flex justify-between" onClick={() => setShowItem(!showItem)}>
+                <div className="flex justify-between" onClick={handleChange}>
                     <span className="font-bold text-lg">
                         {data?.title}({data?.itemCards?.length})
                     </span>
