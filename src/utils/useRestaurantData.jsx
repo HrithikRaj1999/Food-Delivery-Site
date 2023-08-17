@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import RestaurantCard from "../components/RestaurantCard";
+import { RestaurantCard, RestaurantCardWithMessage } from "../components/RestaurantCard";
+import { findKey } from "./utilFunctions";
+import _ from "lodash";
 const useRestaurantData = () => {
     const [initialData, setInitialData] = useState([]); //to get only initial data and we do not perform on this
     const [values, setValues] = useState([]); //to perform operation and to render this
     const [searchText, setSearchText] = useState("");
     const [searchData, setSearchData] = useState([]);
     const filtered = values?.length !== initialData?.length;
-
     const getApiData = async () => {
         const responseData = await axios.get(
             "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.545512447222734&lng=73.792013078928&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
@@ -58,12 +59,19 @@ const useRestaurantData = () => {
             });
         setValues(newData);
     };
+    const RestaurantCardWithMsg = RestaurantCardWithMessage(RestaurantCard); // higher order function this will return a component 
     const GetEachResData = () => {
-        return values?.map((data, indx) => {
-            console.log({ data });
+        return values?.map(data => {
+            const message = findKey(data?.info, "message");
+            const findKeyValue = _.isEqual(message, {}) ? false : true;
+            console.log(findKeyValue);
             return (
-                <Link className="res-link" to={`/restaurant/${data.info.id}`}>
-                    <RestaurantCard key={data.info.id} data={data.info} />
+                <Link className="res-link" to={`/restaurant/${data.info.id}`} key={data.info.id}>
+                    {findKeyValue ? (
+                        <RestaurantCardWithMsg data={data.info} message={message} />
+                    ) : (
+                        <RestaurantCard data={data.info} />
+                    )}
                 </Link>
             );
         });
