@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { logoUrl } from "../utils/constants";
 import { Link } from "react-router-dom";
-import useOnlineStatus from "../utils/useOnlineStatus";
+// import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../context/UserContext";
 
 const Header = () => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -9,7 +10,8 @@ const Header = () => {
     const HandleClick = () => {
         setLoggedIn(!loggedIn);
     };
-    const btnLabel = loggedIn ? "Log Out" : "Log In";
+    const {LoggedInUser}=useContext(UserContext);
+    const btnLabel = loggedIn ? `Log Out` : "Log In";
     return (
         <div className="flex justify-between shadow-lg bg-zinc-800 fixed top-0 w-full p-1">
             <div className="flex items-center ">
@@ -34,11 +36,12 @@ const Header = () => {
                         <Link to="/grocery">Grocery</Link>
                     </li>
                     <button
-                        className="login-button login-button-gradient login-button-rounded login-button-shadow"
+                        className="login-button login-button-gradient login-button-rounded login-button-shadow px-3"
                         onClick={HandleClick}
                     >
                         {btnLabel}
                     </button>
+                    {loggedIn?<li>{ LoggedInUser }</li>:null}
                 </ul>
             </div>
         </div>

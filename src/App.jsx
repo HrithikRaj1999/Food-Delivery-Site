@@ -1,13 +1,14 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-
 import Contact from "./components/Contact";
 import Cart from "./components/Cart";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import Footer from "./components/Footer";
+import UserContext from "./context/UserContext";
 /**
  * Header
  *  -logo
@@ -34,12 +35,31 @@ const Grocery = lazy(() => import("./components/Grocery"));
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
+    const [userName, setUserName] = useState();
+    const{place}=useContext(UserContext);
+    useEffect(() => {
+        //Make and API call and send user and password if correct then log in user
+        const data = {
+            name: "Jesus Christ ✅ ",
+        };
+        setUserName(data.name);
+    }, []);
+
     return (
-        <div className="app">
-            <Header />
-           <div className="outlet"><Outlet /></div> 
-            {/** this outlet is replaced by the children route it is like a placeholder */}
-        </div>
+
+        //now loggedInUser can be 
+        <UserContext.Provider value={{LoggedInUser: userName,place:place,setUserName }}>
+            <div className="app">
+                <Header />
+                <div className="outlet">
+                    <Outlet />
+                </div>
+                {/** this outlet is replaced by the children route it is like a placeholder */}
+                <div className="footer">
+                    <Footer />
+                </div>
+            </div>
+        </UserContext.Provider>
     );
 };
 

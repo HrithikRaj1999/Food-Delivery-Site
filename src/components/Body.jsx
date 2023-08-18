@@ -18,7 +18,7 @@ const Body = () => {
     const onlineStatus = useOnlineStatus();
     console.log({ bodyRendered: values });
     return onlineStatus ? (
-        <div className="mt-[9rem]">
+        <div className="mt-[9rem] mr-[2rem] ml-[3rem] mb-[4rem]">
             <div className="utility flex items-center">
                 <div className="search m-1 p-2 flex items-center">
                     <input
@@ -66,7 +66,7 @@ const Body = () => {
                 </div>
             </div>
             {values?.length !== 0 ? (
-                <div className="cards-wrapper flex flex-wrap mt-[80px]">
+                <div className="flex flex-wrap ">
                     <GetEachResData />
                 </div>
             ) : (
