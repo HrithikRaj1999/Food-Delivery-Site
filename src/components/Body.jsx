@@ -18,7 +18,7 @@ const Body = () => {
     const onlineStatus = useOnlineStatus();
     console.log({ bodyRendered: values });
     return onlineStatus ? (
-        <div className="mt-[9rem] mr-[2rem] ml-[3rem] mb-[4rem]">
+        <div >
             <div className="utility flex items-center">
                 <div className="search m-1 p-2 flex items-center">
                     <input
@@ -34,13 +34,15 @@ const Body = () => {
                         Search
                     </button>
                 </div>
-                <div className="btn-filter p-2">
+                <div className="btn-filter m-1 p-2 flex items-center">
                     <button
                         className="inline-flex w-full justify-center gap-x-1.5 rounded-full bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 "
                         onClick={getTopRatedRes}
                     >
                         Show Top Restaurant
                     </button>
+                </div>
+                <div className="btn-filter m-1 p-2 flex items-center">
                     {filtered ? (
                         <button
                             className="inline-flex w-full justify-center gap-x-1.5 rounded-full bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
@@ -50,7 +52,8 @@ const Body = () => {
                         </button>
                     ) : null}
                 </div>
-                <div className="btn-sort relative inline-block text-left  ">
+
+                <div className="btn-filter m-1 p-2 flex items-center">
                     <select
                         className="inline-flex w-full justify-center gap-x-1.5 rounded-full bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                         onChange={handleRatingChange}
@@ -60,17 +63,21 @@ const Body = () => {
                         <option value="default" disabled>
                             Select Rating
                         </option>
-                        <option value="best" className="text-gray-400 ">Best</option>
-                        <option value="avg" className="text-gray-400 " >Average</option>
+                        <option value="best" className="text-gray-400 ">
+                            Best
+                        </option>
+                        <option value="avg" className="text-gray-400 ">
+                            Average
+                        </option>
                     </select>
                 </div>
             </div>
             {values?.length !== 0 ? (
-                <div className="flex flex-wrap ">
+                <div className="flex flex-wrap justify-center p-5">
                     <GetEachResData />
                 </div>
             ) : (
-                <div>
+                <div  className="flex flex-wrap justify-center p-5"> 
                     <Shimmer />
                 </div>
             )}

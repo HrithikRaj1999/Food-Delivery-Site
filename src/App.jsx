@@ -9,6 +9,10 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Footer from "./components/Footer";
 import UserContext from "./context/UserContext";
+import { Provider } from "react-redux";
+import { appStore, persistor } from "./utils/appStore";
+import { PersistGate } from 'redux-persist/lib/integration/react';
+
 /**
  * Header
  *  -logo
@@ -36,7 +40,7 @@ const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
     const [userName, setUserName] = useState();
-    const{place}=useContext(UserContext);
+    const { place } = useContext(UserContext);
     useEffect(() => {
         //Make and API call and send user and password if correct then log in user
         const data = {
@@ -46,20 +50,27 @@ const AppLayout = () => {
     }, []);
 
     return (
+        //Provide our appStore to our whole app
+        <Provider store={appStore}>
+            {/* now loggedInUser can be */}
+            <PersistGate loading={null} persistor={persistor}>
+                <UserContext.Provider value={{ LoggedInUser: userName, place: place, setUserName }}>
+                    <div className="app flex flex-col min-h-screen">
+                        <div>
+                            <Header />
+                        </div>
 
-        //now loggedInUser can be 
-        <UserContext.Provider value={{LoggedInUser: userName,place:place,setUserName }}>
-            <div className="app">
-                <Header />
-                <div className="outlet">
-                    <Outlet />
-                </div>
-                {/** this outlet is replaced by the children route it is like a placeholder */}
-                <div className="footer">
-                    <Footer />
-                </div>
-            </div>
-        </UserContext.Provider>
+                        <div className="flex-grow mt-40 mx-8">
+                            <Outlet />
+                        </div>
+
+                        <div className="footer mt-auto">
+                            <Footer />
+                        </div>
+                    </div>
+                </UserContext.Provider>
+            </PersistGate>
+        </Provider>
     );
 };
 
