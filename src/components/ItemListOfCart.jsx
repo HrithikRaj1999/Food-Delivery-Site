@@ -1,13 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector, useSelector } from "react-redux";
 import { foodLink } from "../utils/constants";
-import { addItems, getTotalCostOfAddedItem, removeItems } from "../utils/cartSlice";
+import { addItems, removeItems } from "../utils/cartSlice";
 
-const ItemList = ({ foodList }) => {
+function ItemListOfCart() {
     const imgId = foodLink;
+    const cartItems = useSelector(store => store.cart.itemsObj);
     const dispatch = useDispatch();
-    // subscribing to the appStore using a Selector or get data
-    const cartItems = useSelector(store => store.cart.itemsObj); //getter
-
     const handleAddItem = item => {
         //dispatch an action or perform an action this is setter
         dispatch(addItems(item)); //this will go to reducer function action in payload
@@ -15,13 +14,19 @@ const ItemList = ({ foodList }) => {
     const handleRemoveItem = item => {
         dispatch(removeItems(item));
     };
-    const totalCost = useSelector(store => store.cart.totalCost);
-    console.log(totalCost);
-
+    const onlyUniqueFoodItemId = new Set();
+    const onlyUniqueFoodItemObj = [];
+    cartItems.forEach(obj => {
+        if (!onlyUniqueFoodItemId.has(obj.card.info.id)) {
+            onlyUniqueFoodItemId.add(obj.card.info.id);
+            return onlyUniqueFoodItemObj.push(obj);
+        }
+    });
+   
+    console.log("onlyUniqueFoodItemObj", onlyUniqueFoodItemObj.map(i=>i.card.info.name));
     return (
         <div>
-        
-            {foodList?.map(item => (
+            {onlyUniqueFoodItemObj?.map(item => (
                 <div
                     key={item.card.info.id}
                     className="p-2 m-2 border-gray-200 border-b-2 text-left flex justify-between"
@@ -41,7 +46,7 @@ const ItemList = ({ foodList }) => {
                     <div className="w-3/12 p-4">
                         <div className="absolute">
                             {cartItems.some(
-                                cartItem => cartItem.card.info.id === item.card.info.id
+                                obj => obj.card.info.id === item.card.info.id
                             ) ? (
                                 <div className="bg-black rounded-lg">
                                     <button
@@ -76,7 +81,7 @@ const ItemList = ({ foodList }) => {
                             )}
                         </div>
                         <img
-                            src={imgId + item.card?.info?.imageId}
+                            src={imgId + item.card?.info.imageId}
                             className="w-[130px] h-[130px] rounded-lg"
                         />
                     </div>
@@ -84,5 +89,6 @@ const ItemList = ({ foodList }) => {
             ))}
         </div>
     );
-};
-export default ItemList;
+}
+
+export default ItemListOfCart;
