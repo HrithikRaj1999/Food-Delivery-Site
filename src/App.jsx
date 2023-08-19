@@ -9,6 +9,7 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Footer from "./components/Footer";
 import UserContext from "./context/UserContext";
+
 import { Provider } from "react-redux";
 import { appStore, persistor } from "./utils/appStore";
 import { PersistGate } from 'redux-persist/lib/integration/react';
@@ -52,6 +53,7 @@ const AppLayout = () => {
     return (
         //Provide our appStore to our whole app
         <Provider store={appStore}>
+            {/* now loggedInUser can be */}
             <PersistGate loading={null} persistor={persistor}>
                 <UserContext.Provider value={{ LoggedInUser: userName, place: place, setUserName }}>
                     <div className="app flex flex-col min-h-screen">
