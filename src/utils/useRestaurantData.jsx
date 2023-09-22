@@ -35,7 +35,6 @@ const useRestaurantData = () => {
                 isCuisineExist || res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
             );
         });
-        console.log({ searchResults });
         setValues(searchResults?.length === 0 ? values : searchResults);
         setSearchData(searchResults?.length === 0 ? values : searchResults);
     };
@@ -59,12 +58,11 @@ const useRestaurantData = () => {
             });
         setValues(newData);
     };
-    const RestaurantCardWithMsg = RestaurantCardWithMessage(RestaurantCard); // higher order function this will return a component 
+    const RestaurantCardWithMsg = RestaurantCardWithMessage(RestaurantCard); // higher order function this will return a component
     const GetEachResData = () => {
         return values?.map(data => {
             const message = findKey(data?.info, "message");
             const findKeyValue = _.isEqual(message, {}) ? false : true;
-            console.log(findKeyValue);
             return (
                 <Link className="res-link" to={`/restaurant/${data.info.id}`} key={data.info.id}>
                     {findKeyValue ? (

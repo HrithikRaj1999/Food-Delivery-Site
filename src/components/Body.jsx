@@ -16,9 +16,8 @@ const Body = () => {
         GetEachResData,
     } = useRestaurantData();
     const onlineStatus = useOnlineStatus();
-    console.log({ bodyRendered: values });
     return onlineStatus ? (
-        <div >
+        <div>
             <div className="utility flex items-center">
                 <div className="search m-1 p-2 flex items-center">
                     <input
@@ -77,7 +76,7 @@ const Body = () => {
                     <GetEachResData />
                 </div>
             ) : (
-                <div  className="flex flex-wrap justify-center p-5"> 
+                <div className="flex flex-wrap justify-center p-5">
                     <Shimmer />
                 </div>
             )}

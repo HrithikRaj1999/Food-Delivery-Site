@@ -17,12 +17,6 @@ const Header = () => {
     // subscribing to the appStore using a Selector or get data
     const cartItems = useSelector(store => store.cart.itemsObj); //getter
     const itemId = useSelector(store => store.cart.itemsId);
-    console.log(
-        "cartItems",
-        cartItems.map(i => i.card.info.name),
-        "ids",
-        itemId
-    );
     return (
         <div className="flex justify-between shadow-lg bg-zinc-800 fixed top-0 w-full p-1">
             <div className="flex items-center ">

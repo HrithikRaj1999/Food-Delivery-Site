@@ -1,7 +1,6 @@
 import { foodLink } from "../utils/constants";
 
 export const RestaurantCard = ({ data }) => {
-    console.log({ data });
     const { name, cuisines, avgRating, avgRatingString, cloudinaryImageId } = data;
     const ratingToShow = avgRating || avgRatingString; //in data there is sometime avgRatingSting string instead of avgRating
     //destructuring on the fly

@@ -22,8 +22,7 @@ function ItemListOfCart() {
             return onlyUniqueFoodItemObj.push(obj);
         }
     });
-   
-    console.log("onlyUniqueFoodItemObj", onlyUniqueFoodItemObj.map(i=>i.card.info.name));
+
     return (
         <div>
             {onlyUniqueFoodItemObj?.map(item => (
@@ -45,9 +44,7 @@ function ItemListOfCart() {
                     </div>
                     <div className="w-3/12 p-4">
                         <div className="absolute">
-                            {cartItems.some(
-                                obj => obj.card.info.id === item.card.info.id
-                            ) ? (
+                            {cartItems.some(obj => obj.card.info.id === item.card.info.id) ? (
                                 <div className="bg-black rounded-lg">
                                     <button
                                         className="p-1 rounded-lg bg-black text-white shadow-lg"

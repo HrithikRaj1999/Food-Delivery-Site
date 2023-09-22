@@ -10,8 +10,6 @@ const Cart = () => {
         dispatch(clearCart());
     };
     const totalCost = useSelector(store => store.cart.totalCost);
-    console.log(totalCost);
-    console.log(cartItems);
     return (
         <div>
             {cartItems.length !== 0 ? (

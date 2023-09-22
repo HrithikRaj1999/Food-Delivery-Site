@@ -16,11 +16,9 @@ const ItemList = ({ foodList }) => {
         dispatch(removeItems(item));
     };
     const totalCost = useSelector(store => store.cart.totalCost);
-    console.log(totalCost);
 
     return (
         <div>
-        
             {foodList?.map(item => (
                 <div
                     key={item.card.info.id}
